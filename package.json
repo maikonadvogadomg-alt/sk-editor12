@@ -1,10 +1,12 @@
 {
-  "name": "sk-code-editor",
-  "version": "2.0.0",
-  "description": "SK Code Editor",
-  "main": "main.js",
+  "name": "codelens-local",
+  "version": "1.0.4",
+  "description": "codelens-local — App desktop (Windows, Mac, Linux)",
+  "main": "electron/main.cjs",
   "private": true,
   "scripts": {
+    "desktop": "electron .",
+    "exe": "electron-builder --win portable --publish never",
     "start": "electron .",
     "build": "electron-builder --publish=never",
     "build:win": "electron-builder --win --x64 --publish=never",
@@ -12,10 +14,11 @@
     "build:linux": "electron-builder --linux --x64 --publish=never"
   },
   "build": {
-    "appId": "com.maikon.skeditor",
-    "productName": "SK Code Editor",
+    "appId": "com.meuapp.codelenslocal",
+    "productName": "codelens-local",
     "directories": {
-      "output": "dist"
+      "output": "dist",
+      "buildResources": "build"
     },
     "files": [
       "main.js",
@@ -36,11 +39,13 @@
       ],
       "sign": null
     },
+    "copyright": "© 2026 codelens-local",
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "shortcutName": "SK Code Editor"
+      "createStartMenuShortcut": true,
+      "shortcutName": "codelens-local"
     },
     "mac": {
       "target": [
@@ -55,6 +60,9 @@
       "identity": null,
       "hardenedRuntime": false
     },
+    "dmg": {
+      "background": null
+    },
     "linux": {
       "target": [
         {
@@ -64,13 +72,22 @@
           ]
         }
       ],
-      "category": "Utility"
+      "category": "Utility",
+      "description": "codelens-local — App desktop"
     },
     "compression": "normal",
-    "nodeGypRebuild": false
+    "removePackageScripts": true,
+    "nodeGypRebuild": false,
+    "buildDependenciesFromSource": false
   },
   "devDependencies": {
     "electron": "^33.4.0",
-    "electron-builder": "^25.1.8"
-  }
+    "electron-builder": "^25.1.8",
+    "@capacitor/cli": "^7.0.0"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/android": "^7.0.0"
+  },
+  "author": "codelens-local"
 }
